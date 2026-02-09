@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#4A7FB5">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Ramadan Prep Workshop — Financial Statement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -956,12 +958,17 @@ body {
   .line-item-name { font-size: 14px; min-width: 0; }
   .line-item-amount { font-size: 14px; min-width: 75px; }
   .line-item-badge { font-size: 10px; }
-  .line-item-remove { opacity: 0.6; width: 24px; height: 24px; margin-left: 6px; }
+  .line-item-remove { opacity: 0.6; width: 36px; height: 36px; margin-left: 6px; font-size: 18px; }
+  .action-remove { opacity: 0.6; width: 36px; height: 36px; font-size: 18px; }
 
   .add-item-row { padding: 8px 14px; }
-  .add-item-btn { font-size: 14px; padding: 8px 12px; }
-  .add-form input { font-size: 14px; padding: 8px 10px; }
-  .btn-confirm, .btn-cancel { font-size: 13px; padding: 8px 12px; }
+  .add-item-btn { font-size: 14px; padding: 10px 12px; min-height: 44px; }
+  .add-form { flex-wrap: wrap; }
+  .add-form input[type="text"], .add-form input[type="number"] { font-size: 16px; padding: 10px 12px; width: 100%; min-height: 44px; }
+  .btn-confirm, .btn-cancel { font-size: 14px; padding: 10px 14px; min-height: 44px; }
+  .action-add-form input { font-size: 16px; min-height: 44px; }
+  .action-add-form select { font-size: 16px; min-height: 44px; }
+  .action-add-btn { min-height: 44px; }
 
   .summary-callout { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 4px; }
   .summary-callout-label { font-size: 14px; }
@@ -988,6 +995,37 @@ body {
   .action-item { padding: 14px 14px; gap: 10px; }
   .action-badge { font-size: 10px; padding: 3px 8px; }
   .action-text { font-size: 14px; }
+
+  .scenario-toggle input[type="checkbox"] { width: 22px; height: 22px; min-width: 22px; }
+}
+
+/* ── SMALL ANDROID PHONES (360px and below) ── */
+@media (max-width: 380px) {
+  .container { padding: 0 12px 40px; }
+  .hero-inner { padding: 0 12px; }
+  .hero h1 { font-size: 22px; }
+  .hero-badge { font-size: 10px; padding: 4px 10px; letter-spacing: 2px; }
+
+  .flow-node { padding: 14px 16px; }
+  .flow-node-value { font-size: 20px; }
+
+  .part-name { font-size: 18px; }
+  .part-total { font-size: 16px; }
+
+  .subsection-header { padding: 10px 12px; }
+  .subsection-name { font-size: 14px; }
+  .subsection-total { font-size: 14px; }
+
+  .line-item { padding: 8px 12px; }
+  .line-item-name { font-size: 13px; }
+  .line-item-amount { font-size: 13px; min-width: 65px; }
+
+  .net-card { padding: 14px; }
+  .combined-value { font-size: 26px; }
+  .scenario-result-value { font-size: 22px; }
+
+  .add-form-actions { width: 100%; }
+  .btn-confirm, .btn-cancel { flex: 1; }
 }
 </style>
 </head>
