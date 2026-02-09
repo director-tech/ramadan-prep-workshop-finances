@@ -874,20 +874,74 @@ body {
 .chart-wrapper {
   position: relative;
   width: 100%;
-  max-height: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.chart-wrapper canvas {
-  max-height: 320px;
+.chart-wrapper.donut { max-height: 320px; }
+.chart-wrapper.donut canvas { max-height: 320px; }
+
+.chart-wrapper.bar { height: 300px; }
+.chart-wrapper.bar-h { height: 240px; }
+
+/* ── SAVE STATUS BAR ── */
+.save-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 100;
+  font-size: 13px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
 }
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gray-500);
+}
+
+.save-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+
+.save-dot.unsaved { background: var(--orange); }
+
+.save-bar button {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--black-light);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.save-bar button:hover { background: var(--gray-100); border-color: var(--gray-400); }
+
+.save-bar .btn-reset { color: var(--red); border-color: var(--red); }
+.save-bar .btn-reset:hover { background: var(--red-light); }
 
 /* ── FOOTER ── */
 .footer {
   margin-top: 64px;
-  padding: 32px 0;
+  padding: 32px 0 60px;
   border-top: 1px solid var(--gray-200);
   text-align: center;
   font-size: 14px;
@@ -920,7 +974,7 @@ body {
   .container { padding: 0 16px 24px; }
   .part-section { margin-top: 24px; break-inside: avoid; }
   .subsection { break-inside: avoid; box-shadow: none !important; }
-  .line-item-remove, .add-item-row { display: none !important; }
+  .line-item-remove, .add-item-row, .save-bar { display: none !important; }
   .flow-node { padding: 14px 18px; min-width: 150px; }
   .flow-node-value { font-size: 20px; }
   .net-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -952,8 +1006,11 @@ body {
 
   .net-grid { grid-template-columns: 1fr; gap: 16px; }
   .charts-grid { grid-template-columns: 1fr; gap: 16px; }
-  .chart-wrapper { max-height: 280px; }
-  .chart-wrapper canvas { max-height: 280px; }
+  .chart-wrapper.donut { max-height: 280px; }
+  .chart-wrapper.donut canvas { max-height: 280px; }
+  .chart-wrapper.bar { height: 260px; }
+  .chart-wrapper.bar-h { height: 220px; }
+  .chart-card { padding: 18px; }
 
   .summary-callout { flex-wrap: wrap; gap: 8px; padding: 14px 18px; }
   .summary-callout-label { font-size: 15px; }
@@ -1047,6 +1104,9 @@ body {
   .action-text { font-size: 14px; }
 
   .scenario-toggle input[type="checkbox"] { width: 22px; height: 22px; min-width: 22px; }
+
+  .save-bar { padding: 6px 14px; gap: 8px; font-size: 11px; }
+  .save-bar button { font-size: 11px; padding: 4px 10px; }
 }
 
 /* ── SMALL ANDROID PHONES (360px and below) ── */
@@ -1139,25 +1199,25 @@ body {
     <div class="charts-grid">
       <div class="chart-card">
         <div class="chart-card-title">Revenue Breakdown</div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper donut">
           <canvas id="chart-revenue"></canvas>
         </div>
       </div>
       <div class="chart-card">
         <div class="chart-card-title">Expense Breakdown</div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper donut">
           <canvas id="chart-expenses"></canvas>
         </div>
       </div>
       <div class="chart-card">
         <div class="chart-card-title">Revenue vs. Expenses</div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bar">
           <canvas id="chart-comparison"></canvas>
         </div>
       </div>
       <div class="chart-card">
         <div class="chart-card-title">Who Paid What</div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper bar-h">
           <canvas id="chart-payers"></canvas>
         </div>
       </div>
@@ -2144,6 +2204,7 @@ function removeItem(btn) {
   setTimeout(() => {
     item.remove();
     recalcAll();
+    autoSave();
   }, 250);
 }
 
@@ -2196,6 +2257,7 @@ function addItem(btn, sectionId) {
   list.appendChild(div);
   hideAddForm(btn);
   recalcAll();
+  autoSave();
 }
 
 function escapeHtml(str) {
@@ -2208,7 +2270,10 @@ function escapeHtml(str) {
 function removeAction(btn) {
   const item = btn.closest('.action-item');
   item.style.animation = 'itemRemove 0.25s ease forwards';
-  setTimeout(() => item.remove(), 250);
+  setTimeout(() => {
+    item.remove();
+    autoSave();
+  }, 250);
 }
 
 function showActionForm(btn) {
@@ -2250,6 +2315,7 @@ function addAction(btn) {
   `;
   list.appendChild(div);
   hideActionForm(btn);
+  autoSave();
 }
 
 // ── Enter key support on forms ──
@@ -2367,12 +2433,12 @@ function initCharts() {
         backgroundColor: [chartColors.blue, chartColors.red, chartColors.green],
         borderRadius: 6,
         borderSkipped: false,
-        barThickness: 60,
+        maxBarThickness: 60,
       }]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -2406,12 +2472,12 @@ function initCharts() {
         backgroundColor: [chartColors.blue, chartColors.purple, chartColors.blueDark, chartColors.orange],
         borderRadius: 6,
         borderSkipped: false,
-        barThickness: 60,
+        maxBarThickness: 36,
       }]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       indexAxis: 'y',
       plugins: {
         legend: { display: false },
@@ -2430,7 +2496,8 @@ function initCharts() {
           }
         },
         y: {
-          grid: { display: false }
+          grid: { display: false },
+          ticks: { font: { size: 14 } }
         }
       }
     }
@@ -2461,10 +2528,200 @@ function updateCharts(revTotals, expTotals, totalRevenue, totalExpenses, combine
   chartPayers.update();
 }
 
+// ── LocalStorage Persistence ──
+const STORAGE_KEY = 'ramadan-prep-workshop-data';
+
+function getState() {
+  // Serialize all line items from every section
+  const sections = ['donations', 'foodsales', 'babysitting', 'marketing', 'supplies', 'travel', 'hospitality', 'catering', 'cleaning', 'mohsin', 'labor'];
+  const data = { sections: {}, actions: [] };
+
+  sections.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    if (!list) return;
+    data.sections[s] = [];
+    list.querySelectorAll('.line-item').forEach(item => {
+      const entry = {
+        name: item.querySelector('.line-item-name').textContent,
+        amount: parseFloat(item.dataset.amount) || 0,
+      };
+      if (item.dataset.included === 'true') entry.included = true;
+      if (item.dataset.status) entry.status = item.dataset.status;
+      if (item.dataset.laborType) entry.laborType = item.dataset.laborType;
+      // Check for badge text
+      const badge = item.querySelector('.line-item-badge');
+      if (badge && !item.dataset.included) entry.badgeText = badge.textContent.trim();
+      data.sections[s].push(entry);
+    });
+  });
+
+  // Serialize action items
+  document.querySelectorAll('#action-list .action-item').forEach(item => {
+    const badge = item.querySelector('.action-badge');
+    const text = item.querySelector('.action-text');
+    data.actions.push({
+      priority: badge.classList.contains('urgent') ? 'urgent' : 'pending',
+      html: text.innerHTML,
+    });
+  });
+
+  return data;
+}
+
+function saveToLocal() {
+  const data = getState();
+  data.savedAt = new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  showSaveStatus('Saved just now', false);
+}
+
+function autoSave() {
+  saveToLocal();
+}
+
+function loadFromLocal() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return false;
+
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { return false; }
+  if (!data.sections) return false;
+
+  // Rebuild each section
+  Object.keys(data.sections).forEach(sectionId => {
+    const list = document.getElementById('list-' + sectionId);
+    if (!list) return;
+    // Clear existing items
+    list.innerHTML = '';
+    // Rebuild
+    data.sections[sectionId].forEach((entry, idx) => {
+      const div = document.createElement('div');
+      div.className = 'line-item';
+      div.dataset.amount = entry.amount;
+      if (entry.included) div.dataset.included = 'true';
+      if (entry.status) div.dataset.status = entry.status;
+      if (entry.laborType) div.dataset.laborType = entry.laborType;
+
+      let badgeHtml = '';
+      if (entry.included) {
+        badgeHtml = '<span class="line-item-badge badge-included">included</span>';
+      } else if (entry.status === 'paid') {
+        badgeHtml = '<span class="line-item-badge badge-paid">Paid</span>';
+      } else if (entry.status === 'unpaid') {
+        badgeHtml = '<span class="line-item-badge badge-unpaid">Unpaid</span>';
+      }
+
+      const amountDisplay = entry.included ? '—' : fmtPlain(entry.amount);
+
+      div.innerHTML = `
+        <span class="line-item-number">${idx + 1}.</span>
+        <span class="line-item-name">${escapeHtml(entry.name)}</span>
+        ${badgeHtml}
+        <span class="line-item-amount">${amountDisplay}</span>
+        <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+      `;
+      list.appendChild(div);
+    });
+  });
+
+  // Rebuild action items
+  if (data.actions) {
+    const actionList = document.getElementById('action-list');
+    actionList.innerHTML = '';
+    data.actions.forEach(a => {
+      const div = document.createElement('div');
+      div.className = 'action-item';
+      div.innerHTML = `
+        <span class="action-badge ${a.priority}">${a.priority === 'urgent' ? 'Urgent' : 'Pending'}</span>
+        <span class="action-text">${a.html}</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      `;
+      actionList.appendChild(div);
+    });
+  }
+
+  // Show when it was saved
+  if (data.savedAt) {
+    const d = new Date(data.savedAt);
+    const timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dateStr = d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    showSaveStatus('Last saved ' + dateStr + ' ' + timeStr, false);
+  }
+
+  return true;
+}
+
+function showSaveStatus(text, unsaved) {
+  document.getElementById('save-text').textContent = text;
+  const dot = document.getElementById('save-dot');
+  if (unsaved) dot.classList.add('unsaved');
+  else dot.classList.remove('unsaved');
+}
+
+function exportData() {
+  const data = getState();
+  data.exportedAt = new Date().toISOString();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ramadan-prep-workshop-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData() {
+  document.getElementById('import-file').click();
+}
+
+function handleImport(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.sections) { alert('Invalid file format.'); return; }
+      data.savedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      loadFromLocal();
+      recalcAll();
+      showSaveStatus('Imported successfully', false);
+    } catch(err) {
+      alert('Could not parse file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function resetData() {
+  if (!confirm('Reset all data to the original financial statement? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+// Load saved data on startup (before charts init)
+const hadSavedData = loadFromLocal();
+
 initCharts();
 
 // Initial calculation check
 recalcAll();
 </script>
+
+<!-- Save Status Bar -->
+<div class="save-bar">
+  <div class="save-status">
+    <div class="save-dot" id="save-dot"></div>
+    <span id="save-text">Loaded</span>
+  </div>
+  <button onclick="saveToLocal()" title="Save now">Save</button>
+  <button onclick="exportData()" title="Download JSON snapshot">Export</button>
+  <button onclick="importData()" title="Import JSON snapshot">Import</button>
+  <button class="btn-reset" onclick="resetData()" title="Clear saved data and restore defaults">Reset</button>
+</div>
+<input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(event)">
+
 </body>
 </html>
