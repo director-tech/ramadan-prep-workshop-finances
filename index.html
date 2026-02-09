@@ -1675,11 +1675,23 @@ body {
         <div class="subsection-label">
           <span class="subsection-code">2G</span>
           <span class="subsection-name">Dr. Mohsin Khan Expenses</span>
-          <span class="subsection-note">Paid by Dr. Mohsin Khan</span>
+          <span class="subsection-note">Paid by Dr. Mohsin Khan — Owed back from event funds</span>
         </div>
-        <span class="subsection-total" data-subtotal="mohsin">$0.00</span>
+        <span class="subsection-total" data-subtotal="mohsin">$500.00</span>
       </div>
       <div class="items-list" id="list-mohsin">
+        <div class="line-item" data-amount="100">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Babysitting and snack bar cash</span>
+          <span class="line-item-amount">$100.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="400">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Paid help for babysitting</span>
+          <span class="line-item-amount">$400.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
       </div>
       <div class="add-item-row">
         <button class="add-item-btn" onclick="showAddForm(this)">+ Add Expense</button>
@@ -1695,9 +1707,12 @@ body {
     </div>
 
     <!-- Mohsin's Total -->
-    <div class="summary-callout">
-      <span class="summary-callout-label">Dr. Mohsin Khan's Total Expenses</span>
-      <span class="summary-callout-value" id="mohsin-total">$0.00</span>
+    <div class="summary-callout" style="background:var(--red-light); border-color:#FFCDD2;">
+      <span class="summary-callout-label" style="color:var(--red);">Debt Owed to Dr. Mohsin Khan</span>
+      <span class="summary-callout-value" style="color:var(--red);" id="mohsin-total">$500.00</span>
+    </div>
+    <div style="padding:10px 24px 0; font-size:14px; color:var(--gray-500); font-style:italic;">
+      Dr. Mohsin Khan's $500 donation offsets this debt — net owed: <strong id="mohsin-net-owed" style="color:var(--black);">$0.00</strong>
     </div>
 
     <!-- 2H Labor -->
@@ -2024,9 +2039,22 @@ function recalcAll() {
   const amirTotal = expTotals.hospitality + expTotals.catering + expTotals.cleaning;
   document.getElementById('amir-total').textContent = fmtPlain(amirTotal);
 
-  // Mohsin's total
+  // Mohsin's total and net owed
   const mohsinTotal = expTotals.mohsin || 0;
   document.getElementById('mohsin-total').textContent = fmtPlain(mohsinTotal);
+  const mohsinDonation = 500;
+  const mohsinNetOwed = mohsinTotal - mohsinDonation;
+  const mohsinNetEl = document.getElementById('mohsin-net-owed');
+  if (mohsinNetOwed > 0) {
+    mohsinNetEl.textContent = fmtPlain(mohsinNetOwed) + ' still owed';
+    mohsinNetEl.style.color = 'var(--red)';
+  } else if (mohsinNetOwed < 0) {
+    mohsinNetEl.textContent = fmtPlain(Math.abs(mohsinNetOwed)) + ' surplus from donation';
+    mohsinNetEl.style.color = 'var(--green)';
+  } else {
+    mohsinNetEl.textContent = '$0.00 — fully offset';
+    mohsinNetEl.style.color = 'var(--black)';
+  }
 
   // Yusuf labor (paid event labor)
   let yusufTotal = 0;
