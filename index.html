@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan Prep Workshop — Financial Statement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white: #FFFFFF;
+  --black: #1A1A1A;
+  --black-light: #2E2E2E;
+  --gray-100: #F8F8F8;
+  --gray-200: #E8E8E8;
+  --gray-300: #D0D0D0;
+  --gray-400: #717171;
+  --gray-500: #4A4A4A;
+  --yellow: #FFF9C4;
+  --yellow-deep: #FFF176;
+  --yellow-border: #E6D97A;
+  --blue: #4A7FB5;
+  --blue-light: #E8F0F8;
+  --blue-dark: #365D87;
+  --green: #4CAF50;
+  --green-light: #E8F5E9;
+  --green-bg: #F1F8E9;
+  --red: #E53935;
+  --red-light: #FFEBEE;
+  --orange: #F57C00;
+  --orange-light: #FFF3E0;
+  --font-title: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── HEADER ── */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 48px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-dark), var(--blue));
+}
+
+.hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 7px 18px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--font-title);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--black);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  color: var(--gray-500);
+}
+
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+.hero-meta svg { width: 17px; height: 17px; stroke: var(--gray-400); fill: none; stroke-width: 1.8; }
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+
+/* ── FLOWCHART ── */
+.flowchart-section {
+  padding: 48px 0 32px;
+}
+
+.flowchart-title {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: -0.2px;
+}
+
+.flowchart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  padding: 12px 0;
+}
+
+.flow-node {
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  text-align: center;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.flow-node:hover {
+  border-color: var(--blue);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.flow-node.revenue { border-color: var(--blue); background: var(--blue-light); }
+.flow-node.expenses { border-color: var(--gray-300); background: var(--gray-100); }
+.flow-node.net-positive { border-color: var(--green); background: var(--green-light); }
+.flow-node.net-negative { border-color: var(--red); background: var(--red-light); }
+
+.flow-node-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.flow-node.revenue .flow-node-label { color: var(--blue); }
+.flow-node.net-positive .flow-node-label { color: var(--green); }
+.flow-node.net-negative .flow-node-label { color: var(--red); }
+
+.flow-node-value {
+  font-family: var(--font-title);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.5px;
+}
+
+.flow-node.revenue .flow-node-value { color: var(--blue-dark); }
+.flow-node.net-positive .flow-node-value { color: var(--green); }
+.flow-node.net-negative .flow-node-value { color: var(--red); }
+
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  color: var(--gray-300);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.flow-arrow svg {
+  width: 48px;
+  height: 24px;
+  stroke: var(--blue);
+  fill: none;
+  stroke-width: 2;
+  opacity: 0.5;
+}
+
+/* ── SECTION STYLES ── */
+.part-section {
+  margin-top: 48px;
+}
+
+.part-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--black);
+}
+
+.part-number {
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.part-name {
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.3px;
+}
+
+.part-total {
+  margin-left: auto;
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  background: var(--yellow);
+  padding: 4px 16px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+}
+
+/* ── SUBSECTION ── */
+.subsection {
+  margin-bottom: 32px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.subsection:hover { box-shadow: var(--shadow-sm); }
+
+.subsection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+  cursor: default;
+}
+
+.subsection-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subsection-code {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 4px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.subsection-name {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.subsection-note {
+  font-size: 14px;
+  color: var(--gray-500);
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.subsection-total {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  background: var(--yellow);
+  padding: 4px 14px;
+  border-radius: var(--radius-sm);
+  letter-spacing: -0.2px;
+}
+
+/* ── LINE ITEMS ── */
+.items-list { padding: 0; }
+
+.line-item {
+  display: flex;
+  align-items: center;
+  padding: 13px 22px;
+  border-bottom: 1px solid var(--gray-200);
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+.line-item:last-child { border-bottom: none; }
+.line-item:hover { background: var(--gray-100); }
+
+.line-item-number {
+  width: 32px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+
+.line-item-name {
+  flex: 1;
+  font-size: 16px;
+  color: var(--black-light);
+}
+
+.line-item-badge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.badge-paid { background: var(--green-light); color: var(--green); }
+.badge-unpaid { background: var(--orange-light); color: var(--orange); }
+.badge-included { background: var(--gray-200); color: var(--gray-500); font-style: italic; }
+
+.line-item-amount {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+  min-width: 100px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.line-item-remove {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--gray-400);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  opacity: 0;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.line-item:hover .line-item-remove { opacity: 1; }
+.line-item-remove:hover { background: var(--red-light); color: var(--red); }
+
+/* ── ADD ITEM ── */
+.add-item-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 22px;
+  gap: 8px;
+  background: var(--gray-100);
+  border-top: 1px solid var(--gray-200);
+}
+
+.add-item-btn {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--blue);
+  background: transparent;
+  border: 1px dashed var(--blue);
+  border-radius: var(--radius-sm);
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+}
+
+.add-item-btn:hover { background: var(--blue-light); border-style: solid; }
+
+.add-form {
+  display: none;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+}
+
+.add-form.active { display: flex; }
+.add-item-btn.hidden { display: none; }
+
+.add-form input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.15s ease;
+  background: var(--white);
+}
+
+.add-form input:focus { border-color: var(--blue); }
+.add-form input[type="text"] { flex: 1; min-width: 0; }
+.add-form input[type="number"] { width: 110px; }
+
+.add-form-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+.btn-confirm, .btn-cancel {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-confirm { background: var(--blue); color: white; }
+.btn-confirm:hover { background: var(--blue-dark); }
+.btn-cancel { background: var(--gray-200); color: var(--gray-500); }
+.btn-cancel:hover { background: var(--gray-300); }
+
+/* ── SUMMARY CALLOUT ── */
+.summary-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--yellow);
+  border: 1px solid var(--yellow-border);
+  border-radius: var(--radius);
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.summary-callout-label {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.summary-callout-value {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.3px;
+}
+
+/* ── NET POSITION ── */
+.net-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.net-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: box-shadow 0.2s ease;
+}
+
+.net-card:hover { box-shadow: var(--shadow-sm); }
+
+.net-card-title {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.net-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  font-size: 16px;
+  color: var(--black-light);
+}
+
+.net-row.total {
+  border-top: 2px solid var(--black);
+  margin-top: 8px;
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--black);
+}
+
+.net-row .positive { color: var(--green); font-weight: 600; }
+.net-row .negative { color: var(--red); font-weight: 600; }
+
+.combined-card {
+  grid-column: 1 / -1;
+  background: var(--blue-light);
+  border-color: var(--blue);
+  text-align: center;
+  padding: 32px;
+}
+
+.combined-card .net-card-title {
+  border-bottom-color: var(--blue);
+  font-size: 18px;
+}
+
+.combined-value {
+  font-family: var(--font-title);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 8px 0;
+}
+
+.combined-value.positive { color: var(--green); }
+.combined-value.negative { color: var(--red); }
+
+.combined-note {
+  font-size: 15px;
+  color: var(--gray-500);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ── WHAT-IF SCENARIO ── */
+.scenario-card {
+  grid-column: 1 / -1;
+  background: var(--white);
+  border: 2px dashed var(--blue);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 4px;
+}
+
+.scenario-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.scenario-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--blue-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.scenario-title {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.scenario-subtitle {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-left: auto;
+  font-style: italic;
+}
+
+.scenario-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.scenario-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  user-select: none;
+}
+
+.scenario-toggle:hover { background: var(--gray-200); }
+
+.scenario-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--blue);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.scenario-toggle-label {
+  font-size: 16px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.scenario-toggle-amount {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+
+.scenario-result {
+  display: none;
+  padding: 20px 24px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.scenario-result.active { display: block; }
+.scenario-result.deficit { background: var(--red-light); border: 1px solid #FFCDD2; }
+.scenario-result.surplus { background: var(--green-light); border: 1px solid #C8E6C9; }
+
+.scenario-result-label {
+  font-size: 14px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.scenario-result-value {
+  font-family: var(--font-title);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.scenario-result.deficit .scenario-result-value { color: var(--red); }
+.scenario-result.surplus .scenario-result-value { color: var(--green); }
+
+.scenario-breakdown {
+  display: none;
+  margin-top: 16px;
+}
+
+.scenario-breakdown.active { display: block; }
+
+.scenario-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 15px;
+  color: var(--black-light);
+}
+
+.scenario-row.total-row {
+  border-top: 2px solid var(--black);
+  margin-top: 8px;
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--black);
+}
+
+/* ── ACTION ITEMS ── */
+.action-list { display: flex; flex-direction: column; gap: 10px; }
+
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  transition: box-shadow 0.2s ease;
+}
+
+.action-item:hover { box-shadow: var(--shadow-sm); }
+.action-item:hover .action-remove { opacity: 1; }
+
+.action-remove {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--gray-400);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  opacity: 0;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.action-remove:hover { background: var(--red-light); color: var(--red); }
+
+.action-add-row {
+  margin-top: 12px;
+}
+
+.action-add-btn {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--blue);
+  background: transparent;
+  border: 1px dashed var(--blue);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+}
+
+.action-add-btn:hover { background: var(--blue-light); border-style: solid; }
+.action-add-btn.hidden { display: none; }
+
+.action-add-form {
+  display: none;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.action-add-form.active { display: flex; }
+
+.action-add-form select {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 9px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.action-add-form select:focus { border-color: var(--blue); }
+
+.action-add-form input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 9px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  background: var(--white);
+  transition: border-color 0.15s ease;
+}
+
+.action-add-form input:focus { border-color: var(--blue); }
+
+.action-badge {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.action-badge.urgent { background: var(--red-light); color: var(--red); }
+.action-badge.pending { background: var(--orange-light); color: var(--orange); }
+
+.action-text {
+  font-size: 16px;
+  color: var(--black-light);
+  line-height: 1.55;
+}
+
+.action-text strong { color: var(--black); font-weight: 600; }
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 64px;
+  padding: 32px 0;
+  border-top: 1px solid var(--gray-200);
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-400);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.part-section { animation: fadeInUp 0.5s ease both; }
+.part-section:nth-child(2) { animation-delay: 0.1s; }
+.part-section:nth-child(3) { animation-delay: 0.15s; }
+.part-section:nth-child(4) { animation-delay: 0.2s; }
+.part-section:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes itemRemove {
+  to { opacity: 0; height: 0; padding: 0 22px; overflow: hidden; }
+}
+
+/* ── PRINT STYLES ── */
+@media print {
+  body { font-size: 12px; }
+  .hero { padding: 24px 0 20px; }
+  .hero::before { display: none; }
+  .hero h1 { font-size: 28px; }
+  .hero h2 { font-size: 16px; }
+  .container { padding: 0 16px 24px; }
+  .part-section { margin-top: 24px; break-inside: avoid; }
+  .subsection { break-inside: avoid; box-shadow: none !important; }
+  .line-item-remove, .add-item-row { display: none !important; }
+  .flow-node { padding: 14px 18px; min-width: 150px; }
+  .flow-node-value { font-size: 20px; }
+  .net-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .combined-value { font-size: 28px; }
+  .flowchart { gap: 0; }
+  .action-item { break-inside: avoid; }
+}
+
+/* ── HALF-WINDOW / TABLET ── */
+@media (max-width: 960px) {
+  .container { max-width: 100%; padding: 0 24px 60px; }
+  .hero-inner { padding: 0 24px; }
+  .hero h1 { font-size: 34px; }
+
+  .flowchart { flex-direction: column; gap: 0; }
+  .flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+  .flow-arrow svg { width: 36px; height: 20px; }
+  .flow-node { min-width: 280px; width: 100%; max-width: 360px; padding: 20px 24px; }
+  .flow-node-value { font-size: 26px; }
+
+  .subsection-header { flex-wrap: wrap; gap: 10px; padding: 14px 18px; }
+  .subsection-label { flex-wrap: wrap; gap: 8px; }
+  .subsection-note { margin-left: 0; width: 100%; margin-top: 2px; }
+  .subsection-total { margin-top: 4px; }
+
+  .line-item { padding: 12px 18px; }
+  .line-item-name { font-size: 15px; }
+  .line-item-amount { min-width: 85px; font-size: 15px; }
+
+  .net-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .summary-callout { flex-wrap: wrap; gap: 8px; padding: 14px 18px; }
+  .summary-callout-label { font-size: 15px; }
+  .summary-callout-value { font-size: 20px; }
+
+  .add-item-row { padding: 8px 18px; }
+  .add-form { flex-wrap: wrap; }
+  .add-form input[type="number"] { width: 100%; }
+
+  .scenario-card { padding: 22px 20px; }
+  .scenario-header { flex-wrap: wrap; gap: 8px; }
+  .scenario-subtitle { margin-left: 0; }
+  .scenario-toggle { flex-wrap: wrap; padding: 12px 14px; }
+  .scenario-toggle-amount { margin-left: 0; width: 100%; margin-top: 4px; }
+  .scenario-result-value { font-size: 28px; }
+
+  .part-header { flex-wrap: wrap; gap: 8px; }
+  .part-name { font-size: 22px; }
+  .part-total { margin-left: 0; margin-top: 4px; font-size: 20px; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 560px) {
+  .container { padding: 0 16px 48px; }
+  .hero-inner { padding: 0 16px; }
+  .hero { padding: 36px 0 28px; }
+  .hero h1 { font-size: 26px; }
+  .hero-badge { font-size: 11px; padding: 5px 14px; }
+  .hero-meta { flex-direction: column; gap: 8px; font-size: 14px; }
+
+  .flowchart-section { padding: 32px 0 20px; }
+  .flowchart-title { font-size: 16px; margin-bottom: 20px; }
+  .flow-node { min-width: 100%; max-width: 100%; padding: 18px 20px; }
+  .flow-node-value { font-size: 24px; }
+  .flow-node-label { font-size: 11px; }
+
+  .part-section { margin-top: 32px; }
+  .part-header { gap: 6px; margin-bottom: 20px; padding-bottom: 10px; }
+  .part-number { font-size: 13px; }
+  .part-name { font-size: 20px; }
+  .part-total { font-size: 18px; padding: 3px 12px; }
+
+  .subsection { margin-bottom: 24px; }
+  .subsection-header { padding: 12px 14px; }
+  .subsection-code { font-size: 11px; padding: 3px 8px; }
+  .subsection-name { font-size: 16px; }
+  .subsection-note { font-size: 12px; }
+  .subsection-total { font-size: 16px; padding: 3px 10px; }
+
+  .line-item { padding: 10px 14px; flex-wrap: wrap; gap: 4px; }
+  .line-item-number { width: 26px; font-size: 13px; }
+  .line-item-name { font-size: 14px; min-width: 0; }
+  .line-item-amount { font-size: 14px; min-width: 75px; }
+  .line-item-badge { font-size: 10px; }
+  .line-item-remove { opacity: 0.6; width: 24px; height: 24px; margin-left: 6px; }
+
+  .add-item-row { padding: 8px 14px; }
+  .add-item-btn { font-size: 14px; padding: 8px 12px; }
+  .add-form input { font-size: 14px; padding: 8px 10px; }
+  .btn-confirm, .btn-cancel { font-size: 13px; padding: 8px 12px; }
+
+  .summary-callout { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .summary-callout-label { font-size: 14px; }
+  .summary-callout-value { font-size: 18px; }
+
+  .net-card { padding: 18px; }
+  .net-card-title { font-size: 15px; }
+  .net-row { font-size: 14px; padding: 5px 0; }
+  .net-row.total { font-size: 16px; }
+  .combined-card { padding: 24px 16px; }
+  .combined-value { font-size: 32px; }
+
+  .scenario-card { padding: 18px 14px; }
+  .scenario-header { flex-wrap: wrap; }
+  .scenario-title { font-size: 16px; }
+  .scenario-subtitle { margin-left: 0; font-size: 12px; }
+  .scenario-toggle { padding: 10px 12px; gap: 10px; }
+  .scenario-toggle-label { font-size: 14px; }
+  .scenario-toggle-amount { font-size: 14px; }
+  .scenario-result-value { font-size: 24px; }
+  .scenario-row { font-size: 13px; }
+  .scenario-row.total-row { font-size: 15px; }
+
+  .action-item { padding: 14px 14px; gap: 10px; }
+  .action-badge { font-size: 10px; padding: 3px 8px; }
+  .action-text { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Financial Statement</div>
+    <h1>Ramadan Prep Workshop</h1>
+    <div class="hero-meta">
+      <span>
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        February 2025
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Rockford, Illinois
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Prepared by Sahwah
+      </span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ════════ FLOWCHART ════════ -->
+  <section class="flowchart-section">
+    <div class="flowchart-title">Financial Overview</div>
+    <div class="flowchart">
+      <div class="flow-node revenue">
+        <div class="flow-node-label">Total Revenue</div>
+        <div class="flow-node-value" id="flow-revenue">$3,541.00</div>
+      </div>
+      <div class="flow-arrow">
+        <svg viewBox="0 0 48 24"><line x1="4" y1="12" x2="36" y2="12"/><polyline points="32,6 38,12 32,18"/></svg>
+      </div>
+      <div class="flow-node expenses">
+        <div class="flow-node-label">Total Expenses</div>
+        <div class="flow-node-value" id="flow-expenses">$4,234.67</div>
+      </div>
+      <div class="flow-arrow">
+        <svg viewBox="0 0 48 24"><line x1="4" y1="12" x2="36" y2="12"/><polyline points="32,6 38,12 32,18"/></svg>
+      </div>
+      <div class="flow-node net-positive" id="flow-net-node">
+        <div class="flow-node-label">Combined Surplus</div>
+        <div class="flow-node-value" id="flow-net">+$915.41</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PART 1: REVENUE ════════ -->
+  <section class="part-section" id="revenue-section">
+    <div class="part-header">
+      <span class="part-number">Part 1</span>
+      <span class="part-name">Revenue</span>
+      <span class="part-total" id="total-revenue">$3,541.00</span>
+    </div>
+
+    <!-- 1A Donations -->
+    <div class="subsection" data-section="donations" data-type="revenue">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">1A</span>
+          <span class="subsection-name">Donations</span>
+        </div>
+        <span class="subsection-total" data-subtotal="donations">$1,800.00</span>
+      </div>
+      <div class="items-list" id="list-donations">
+        <div class="line-item" data-amount="300">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Ibtisam Altayeh (Zelle)</span>
+          <span class="line-item-amount">$300.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="500">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">SSHAQ ER LLC (Zelle)</span>
+          <span class="line-item-amount">$500.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="500">
+          <span class="line-item-number">3.</span>
+          <span class="line-item-name">Amer Rasheed (Zelle)</span>
+          <span class="line-item-amount">$500.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="500">
+          <span class="line-item-number">4.</span>
+          <span class="line-item-name">Dr. Mohsin Khan (Zelle)</span>
+          <span class="line-item-amount">$500.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Donation</button>
+        <div class="add-form">
+          <input type="text" placeholder="Donor name" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'donations')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1B Food Sales -->
+    <div class="subsection" data-section="foodsales" data-type="revenue">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">1B</span>
+          <span class="subsection-name">Food &amp; Snack Sales</span>
+          <span class="subsection-note">Managed by Yusuf</span>
+        </div>
+        <span class="subsection-total" data-subtotal="foodsales">$661.00</span>
+      </div>
+      <div class="items-list" id="list-foodsales">
+        <div class="line-item" data-amount="550">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Cash collected</span>
+          <span class="line-item-amount">$550.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="10">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Zelle collected</span>
+          <span class="line-item-amount">$10.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="101">
+          <span class="line-item-number">3.</span>
+          <span class="line-item-name">Square collected</span>
+          <span class="line-item-amount">$101.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Sale</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'foodsales')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1C Babysitting -->
+    <div class="subsection" data-section="babysitting" data-type="revenue">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">1C</span>
+          <span class="subsection-name">Babysitting</span>
+        </div>
+        <span class="subsection-total" data-subtotal="babysitting">$1,080.00</span>
+      </div>
+      <div class="items-list" id="list-babysitting">
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Tewodros Genbere (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="30">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Nadar Mohammed (Zelle)</span>
+          <span class="line-item-amount">$30.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">3.</span>
+          <span class="line-item-name">Daanya Noor (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="40">
+          <span class="line-item-number">4.</span>
+          <span class="line-item-name">Zamn Hashem (Zelle)</span>
+          <span class="line-item-amount">$40.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="30">
+          <span class="line-item-number">5.</span>
+          <span class="line-item-name">Aisha Rasul (Zelle)</span>
+          <span class="line-item-amount">$30.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">6.</span>
+          <span class="line-item-name">Md Nazmul Haque (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">7.</span>
+          <span class="line-item-name">Mohammed O M Toum (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">8.</span>
+          <span class="line-item-name">Ghulam Murtaza (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="20">
+          <span class="line-item-number">9.</span>
+          <span class="line-item-name">Jason Conderman (Zelle)</span>
+          <span class="line-item-amount">$20.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="10">
+          <span class="line-item-number">10.</span>
+          <span class="line-item-name">Shareef Y Khoga (Zelle)</span>
+          <span class="line-item-amount">$10.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="850">
+          <span class="line-item-number">11.</span>
+          <span class="line-item-name">Cash collected at event</span>
+          <span class="line-item-amount">$850.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Payment</button>
+        <div class="add-form">
+          <input type="text" placeholder="Name or description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'babysitting')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PART 2: EXPENSES ════════ -->
+  <section class="part-section" id="expenses-section">
+    <div class="part-header">
+      <span class="part-number">Part 2</span>
+      <span class="part-name">Expenses</span>
+      <span class="part-total" id="total-expenses">$4,234.67</span>
+    </div>
+
+    <!-- 2A Marketing -->
+    <div class="subsection" data-section="marketing" data-type="expense" data-payer="sahwah">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2A</span>
+          <span class="subsection-name">Marketing &amp; Printing</span>
+          <span class="subsection-note">Paid by Sahwah — Card ...6841</span>
+        </div>
+        <span class="subsection-total" data-subtotal="marketing">$198.64</span>
+      </div>
+      <div class="items-list" id="list-marketing">
+        <div class="line-item" data-amount="131.32">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">M13 Graphics — flyers (01/27)</span>
+          <span class="line-item-amount">$131.32</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="67.32">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">FedEx Office — posters (01/22)</span>
+          <span class="line-item-amount">$67.32</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Expense</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'marketing')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2B Event Supplies -->
+    <div class="subsection" data-section="supplies" data-type="expense" data-payer="sahwah">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2B</span>
+          <span class="subsection-name">Event Supplies</span>
+          <span class="subsection-note">Paid by Sahwah — Sam's Club #8297, 02/05</span>
+        </div>
+        <span class="subsection-total" data-subtotal="supplies">$253.83</span>
+      </div>
+      <div class="items-list" id="list-supplies">
+        <div class="line-item" data-amount="91">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Cost of goods sold (items Yusuf sold at stand)</span>
+          <span class="line-item-amount">$91.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="0" data-included="true">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Free goodie bags for youth sisters/brothers ages 11–17</span>
+          <span class="line-item-badge badge-included">included</span>
+          <span class="line-item-amount">—</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="0" data-included="true">
+          <span class="line-item-number">3.</span>
+          <span class="line-item-name">1,000 cups for free chai, ~300 water bottles, 500 paper plates</span>
+          <span class="line-item-badge badge-included">included</span>
+          <span class="line-item-amount">—</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="0" data-included="true">
+          <span class="line-item-number">4.</span>
+          <span class="line-item-name">One free pizza for Freeport crew, Shaykh Nasser and his kids</span>
+          <span class="line-item-badge badge-included">included</span>
+          <span class="line-item-amount">—</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Supply</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'supplies')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="summary-callout">
+        <span class="summary-callout-label">Sam's Club Total — $91.00 COGS + $162.83 free items</span>
+        <span class="summary-callout-value" data-subtotal="supplies">$253.83</span>
+      </div>
+    </div>
+
+    <!-- 2C Travel -->
+    <div class="subsection" data-section="travel" data-type="expense" data-payer="sahwah">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2C</span>
+          <span class="subsection-name">Travel for Shaykh Abdullah</span>
+          <span class="subsection-note">Paid by Sahwah — Card ...6841</span>
+        </div>
+        <span class="subsection-total" data-subtotal="travel">$1,523.12</span>
+      </div>
+      <div class="items-list" id="list-travel">
+        <div class="line-item" data-amount="79.16">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">American Air 00106414549 — 4 fares &times; $19.79</span>
+          <span class="line-item-amount">$79.16</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="1443.96">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">American Air 00123064969 — 4 fares &times; $360.99</span>
+          <span class="line-item-amount">$1,443.96</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Travel Expense</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'travel')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sahwah's Total -->
+    <div class="summary-callout">
+      <span class="summary-callout-label">Sahwah's Total Expenses (Card Charges)</span>
+      <span class="summary-callout-value" id="sahwah-total">$1,975.59</span>
+    </div>
+
+    <!-- 2D Hospitality -->
+    <div class="subsection" data-section="hospitality" data-type="expense" data-payer="amir">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2D</span>
+          <span class="subsection-name">Hospitality for Shaykh Abdullah</span>
+          <span class="subsection-note">Paid by Amir — DONATED</span>
+        </div>
+        <span class="subsection-total" data-subtotal="hospitality">$584.96</span>
+      </div>
+      <div class="items-list" id="list-hospitality">
+        <div class="line-item" data-amount="382.13">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Hotel for Shaykh Abdullah</span>
+          <span class="line-item-amount">$382.13</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="202.83">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Car rental for Shaykh Abdullah</span>
+          <span class="line-item-amount">$202.83</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Hospitality Expense</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'hospitality')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2E Food & Catering -->
+    <div class="subsection" data-section="catering" data-type="expense" data-payer="amir">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2E</span>
+          <span class="subsection-name">Food &amp; Catering</span>
+          <span class="subsection-note">Paid by Amir — DONATED</span>
+        </div>
+        <span class="subsection-total" data-subtotal="catering">$824.12</span>
+      </div>
+      <div class="items-list" id="list-catering">
+        <div class="line-item" data-amount="474.12">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Snacks, pizza, drinks for event (drinks being returned — refund TBD)</span>
+          <span class="line-item-amount">$474.12</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="350">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Day-after workshop brunch</span>
+          <span class="line-item-amount">$350.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Catering Expense</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'catering')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2F Facility & Cleaning -->
+    <div class="subsection" data-section="cleaning" data-type="expense" data-payer="amir">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2F</span>
+          <span class="subsection-name">Facility &amp; Cleaning</span>
+          <span class="subsection-note">Paid by Amir — DONATED</span>
+        </div>
+        <span class="subsection-total" data-subtotal="cleaning">$200.00</span>
+      </div>
+      <div class="items-list" id="list-cleaning">
+        <div class="line-item" data-amount="200">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Tips for cleaners</span>
+          <span class="line-item-amount">$200.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Cleaning Expense</button>
+        <div class="add-form">
+          <input type="text" placeholder="Description" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'cleaning')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amir's Total -->
+    <div class="summary-callout">
+      <span class="summary-callout-label">Amir's Total Expenses (DONATED — No Reimbursement)</span>
+      <span class="summary-callout-value" id="amir-total">$1,609.08</span>
+    </div>
+
+    <!-- 2G Labor -->
+    <div class="subsection" data-section="labor" data-type="expense" data-payer="labor">
+      <div class="subsection-header">
+        <div class="subsection-label">
+          <span class="subsection-code">2G</span>
+          <span class="subsection-name">Labor &amp; Staffing</span>
+        </div>
+        <span class="subsection-total" data-subtotal="labor">$650.00</span>
+      </div>
+      <div class="items-list" id="list-labor">
+        <div class="line-item" data-amount="151" data-status="paid" data-labor-type="event">
+          <span class="line-item-number">1.</span>
+          <span class="line-item-name">Yusuf — sales stand management (kept Square $101 + $10 Zelle + $40 cash)</span>
+          <span class="line-item-badge badge-paid">Paid</span>
+          <span class="line-item-amount">$151.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="250" data-status="unpaid" data-labor-type="babysitting">
+          <span class="line-item-number">2.</span>
+          <span class="line-item-name">Sister Stephanie — babysitting mgmt</span>
+          <span class="line-item-badge badge-unpaid">Unpaid</span>
+          <span class="line-item-amount">$250.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+        <div class="line-item" data-amount="250" data-status="unpaid" data-labor-type="babysitting">
+          <span class="line-item-number">3.</span>
+          <span class="line-item-name">Sister Ibtisam — babysitting mgmt</span>
+          <span class="line-item-badge badge-unpaid">Unpaid</span>
+          <span class="line-item-amount">$250.00</span>
+          <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <div class="add-item-row">
+        <button class="add-item-btn" onclick="showAddForm(this)">+ Add Labor</button>
+        <div class="add-form">
+          <input type="text" placeholder="Name — role" class="input-name">
+          <input type="number" step="0.01" min="0" placeholder="Amount" class="input-amount">
+          <div class="add-form-actions">
+            <button class="btn-confirm" onclick="addItem(this, 'labor')">Add</button>
+            <button class="btn-cancel" onclick="hideAddForm(this)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PART 3: NET POSITION ════════ -->
+  <section class="part-section" id="net-section">
+    <div class="part-header">
+      <span class="part-number">Part 3</span>
+      <span class="part-name">Net Position</span>
+    </div>
+
+    <div class="net-grid">
+      <!-- Event Only -->
+      <div class="net-card">
+        <div class="net-card-title">3A — Event Only (Excl. Babysitting)</div>
+        <div class="net-row">
+          <span>Donations</span>
+          <span id="net-donations">$1,800.00</span>
+        </div>
+        <div class="net-row">
+          <span>Food &amp; snack sales</span>
+          <span id="net-foodsales">$661.00</span>
+        </div>
+        <div class="net-row" style="border-top:1px solid var(--gray-200); margin-top:6px; padding-top:8px; font-weight:600;">
+          <span>Event Cash Revenue</span>
+          <span id="net-event-revenue">$2,461.00</span>
+        </div>
+        <div class="net-row" style="margin-top:12px;">
+          <span>Sahwah's card charges</span>
+          <span id="net-sahwah">$1,975.59</span>
+        </div>
+        <div class="net-row">
+          <span>Yusuf — kept from sales (Square + Zelle)</span>
+          <span id="net-yusuf">$111.00</span>
+        </div>
+        <div class="net-row" style="border-top:1px solid var(--gray-200); margin-top:6px; padding-top:8px; font-weight:600;">
+          <span>Event Cash Expenses</span>
+          <span id="net-event-expenses">$2,086.59</span>
+        </div>
+        <div class="net-row total">
+          <span>Event Net Cash</span>
+          <span class="positive" id="net-event-net">+$335.41</span>
+        </div>
+      </div>
+
+      <!-- Babysitting Only -->
+      <div class="net-card">
+        <div class="net-card-title">3B — Babysitting Only</div>
+        <div class="net-row">
+          <span>Babysitting revenue</span>
+          <span id="net-babysitting-rev">$1,080.00</span>
+        </div>
+        <div class="net-row">
+          <span>Babysitting labor</span>
+          <span id="net-babysitting-labor">$500.00</span>
+        </div>
+        <div class="net-row total">
+          <span>Babysitting Net Cash</span>
+          <span class="positive" id="net-babysitting-net">+$580.00</span>
+        </div>
+        <div style="margin-top:20px; padding:14px 16px; background:var(--gray-100); border-radius:var(--radius-sm); font-size:15px; color:var(--gray-500);">
+          <em>Amir's $1,609.08 does not affect cash position — Amir donated all of Amir's expenses.</em>
+        </div>
+      </div>
+
+      <!-- Combined -->
+      <div class="net-card combined-card">
+        <div class="net-card-title">3C — Combined Position</div>
+        <div style="display:flex; justify-content:center; gap:48px; margin-bottom:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:14px; color:var(--gray-500); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px;">Event Surplus</div>
+            <div style="font-family:var(--font-title); font-size:24px; font-weight:700; color:var(--green);" id="combined-event">+$335.41</div>
+          </div>
+          <div style="font-size:26px; color:var(--gray-300); display:flex; align-items:center;">+</div>
+          <div>
+            <div style="font-size:14px; color:var(--gray-500); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px;">Babysitting Surplus</div>
+            <div style="font-family:var(--font-title); font-size:24px; font-weight:700; color:var(--green);" id="combined-baby">+$580.00</div>
+          </div>
+        </div>
+        <div class="combined-value positive" id="combined-total">+$915.41</div>
+        <div style="font-size:15px; color:var(--gray-500); font-weight:600;">Combined Surplus</div>
+        <div class="combined-note" id="combined-after">After paying Stephanie &amp; Ibtisam (−$500.00): <strong id="combined-final">+$415.41</strong></div>
+      </div>
+
+      <!-- What-If Scenario -->
+      <div class="net-card scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-icon">?</div>
+          <span class="scenario-title">What If — Reimbursement Scenario</span>
+          <span class="scenario-subtitle">Toggle to see impact</span>
+        </div>
+        <div class="scenario-toggles">
+          <label class="scenario-toggle">
+            <input type="checkbox" id="reimburse-amir" onchange="calcScenario()">
+            <span class="scenario-toggle-label">Reimburse Amir (hospitality, catering, cleaning)</span>
+            <span class="scenario-toggle-amount" id="scenario-amir-amount">−$1,609.08</span>
+          </label>
+          <label class="scenario-toggle">
+            <input type="checkbox" id="reimburse-mohsin" onchange="calcScenario()">
+            <span class="scenario-toggle-label">Reimburse Dr. Mohsin Khan (donation becomes reimbursable)</span>
+            <span class="scenario-toggle-amount" id="scenario-mohsin-amount">−$500.00</span>
+          </label>
+        </div>
+        <div class="scenario-breakdown" id="scenario-breakdown">
+          <div class="scenario-row">
+            <span>Current combined surplus</span>
+            <span id="scenario-current">+$915.41</span>
+          </div>
+          <div class="scenario-row" id="scenario-amir-row" style="display:none;">
+            <span>Reimburse Amir</span>
+            <span style="color:var(--red);" id="scenario-amir-deduct">−$1,609.08</span>
+          </div>
+          <div class="scenario-row" id="scenario-mohsin-row" style="display:none;">
+            <span>Reimburse Dr. Mohsin Khan</span>
+            <span style="color:var(--red);" id="scenario-mohsin-deduct">−$500.00</span>
+          </div>
+          <div class="scenario-row" id="scenario-unpaid-row">
+            <span>Unpaid labor (Stephanie + Ibtisam)</span>
+            <span style="color:var(--red);" id="scenario-unpaid-deduct">−$500.00</span>
+          </div>
+          <div class="scenario-row total-row">
+            <span>Adjusted Position</span>
+            <span id="scenario-adjusted-total">$0.00</span>
+          </div>
+        </div>
+        <div class="scenario-result" id="scenario-result">
+          <div class="scenario-result-label">Adjusted Position</div>
+          <div class="scenario-result-value" id="scenario-result-value">$0.00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PART 4: ACTION ITEMS ════════ -->
+  <section class="part-section">
+    <div class="part-header">
+      <span class="part-number">Part 4</span>
+      <span class="part-name">Outstanding Action Items</span>
+    </div>
+
+    <div class="action-list" id="action-list">
+      <div class="action-item">
+        <span class="action-badge urgent">Urgent</span>
+        <span class="action-text"><strong>Pay Sister Stephanie</strong> — $250.00 owed for babysitting management</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      </div>
+      <div class="action-item">
+        <span class="action-badge urgent">Urgent</span>
+        <span class="action-text"><strong>Pay Sister Ibtisam</strong> — $250.00 owed for babysitting management</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      </div>
+      <div class="action-item">
+        <span class="action-badge pending">Pending</span>
+        <span class="action-text"><strong>Drinks refund</strong> — Amir returning unsold drinks. Refund amount TBD. Refund reduces Amir's donated total.</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      </div>
+      <div class="action-item">
+        <span class="action-badge pending">Pending</span>
+        <span class="action-text"><strong>Calculate Neelum auntie's gift costs</strong> — Neelum auntie made gifts for the speakers. Determine cost of materials. Categorize as donated expense or reimbursable expense.</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      </div>
+      <div class="action-item">
+        <span class="action-badge pending">Pending</span>
+        <span class="action-text"><strong>Factor in additional babysitter payments</strong> — Determine how much the additional babysitters were paid. Add to babysitting expenses and adjust net position accordingly.</span>
+        <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+      </div>
+    </div>
+    <div class="action-add-row">
+      <button class="action-add-btn" onclick="showActionForm(this)">+ Add Action Item</button>
+      <div class="action-add-form">
+        <select class="action-select">
+          <option value="urgent">Urgent</option>
+          <option value="pending" selected>Pending</option>
+        </select>
+        <input type="text" placeholder="Action item description" class="action-input">
+        <div class="add-form-actions">
+          <button class="btn-confirm" onclick="addAction(this)">Add</button>
+          <button class="btn-cancel" onclick="hideActionForm(this)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Ramadan Prep Workshop — Financial Statement
+  </footer>
+</div>
+
+<script>
+// ── Formatting Helpers ──
+function fmt(n) {
+  const abs = Math.abs(n);
+  const str = '$' + abs.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (n < 0) return '−' + str;
+  if (n > 0) return '+' + str;
+  return str;
+}
+
+function fmtPlain(n) {
+  return '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// ── Subtotal Calculation ──
+function calcSubtotal(sectionId) {
+  const list = document.getElementById('list-' + sectionId);
+  if (!list) return 0;
+  let total = 0;
+  list.querySelectorAll('.line-item').forEach(item => {
+    total += parseFloat(item.dataset.amount) || 0;
+  });
+  return total;
+}
+
+// ── Recalculate Everything ──
+function recalcAll() {
+  // Revenue subtotals
+  const revSections = ['donations', 'foodsales', 'babysitting'];
+  const revTotals = {};
+  let totalRevenue = 0;
+
+  revSections.forEach(s => {
+    const sub = calcSubtotal(s);
+    revTotals[s] = sub;
+    totalRevenue += sub;
+    document.querySelectorAll(`[data-subtotal="${s}"]`).forEach(el => {
+      el.textContent = fmtPlain(sub);
+    });
+  });
+
+  document.getElementById('total-revenue').textContent = fmtPlain(totalRevenue);
+
+  // Expense subtotals
+  const expSections = ['marketing', 'supplies', 'travel', 'hospitality', 'catering', 'cleaning', 'labor'];
+  const expTotals = {};
+  let totalExpenses = 0;
+
+  expSections.forEach(s => {
+    const sub = calcSubtotal(s);
+    expTotals[s] = sub;
+    totalExpenses += sub;
+    document.querySelectorAll(`[data-subtotal="${s}"]`).forEach(el => {
+      el.textContent = fmtPlain(sub);
+    });
+  });
+
+  document.getElementById('total-expenses').textContent = fmtPlain(totalExpenses);
+
+  // Sahwah's total: marketing + supplies + travel
+  const sahwahTotal = expTotals.marketing + expTotals.supplies + expTotals.travel;
+  document.getElementById('sahwah-total').textContent = fmtPlain(sahwahTotal);
+
+  // Amir's total: hospitality + catering + cleaning
+  const amirTotal = expTotals.hospitality + expTotals.catering + expTotals.cleaning;
+  document.getElementById('amir-total').textContent = fmtPlain(amirTotal);
+
+  // Yusuf labor (paid event labor)
+  let yusufTotal = 0;
+  let babysittingLabor = 0;
+  document.querySelectorAll('#list-labor .line-item').forEach(item => {
+    const amt = parseFloat(item.dataset.amount) || 0;
+    if (item.dataset.laborType === 'babysitting') {
+      babysittingLabor += amt;
+    } else {
+      yusufTotal += amt;
+    }
+  });
+
+  // Net Position calculations
+  // Event revenue = donations + food sales
+  const eventRevenue = revTotals.donations + revTotals.foodsales;
+  // Event expenses = Sahwah's charges + Yusuf (event labor)
+  const eventExpenses = sahwahTotal + yusufTotal;
+  const eventNet = eventRevenue - eventExpenses;
+
+  // Babysitting
+  const babysittingRev = revTotals.babysitting;
+  const babysittingNet = babysittingRev - babysittingLabor;
+
+  // Combined
+  const combinedSurplus = eventNet + babysittingNet;
+  const afterPaying = combinedSurplus - babysittingLabor;
+
+  // Update net position display
+  document.getElementById('net-donations').textContent = fmtPlain(revTotals.donations);
+  document.getElementById('net-foodsales').textContent = fmtPlain(revTotals.foodsales);
+  document.getElementById('net-event-revenue').textContent = fmtPlain(eventRevenue);
+  document.getElementById('net-sahwah').textContent = fmtPlain(sahwahTotal);
+  document.getElementById('net-yusuf').textContent = fmtPlain(yusufTotal);
+  document.getElementById('net-event-expenses').textContent = fmtPlain(eventExpenses);
+
+  const netEventEl = document.getElementById('net-event-net');
+  netEventEl.textContent = fmt(eventNet);
+  netEventEl.className = eventNet >= 0 ? 'positive' : 'negative';
+
+  document.getElementById('net-babysitting-rev').textContent = fmtPlain(babysittingRev);
+  document.getElementById('net-babysitting-labor').textContent = fmtPlain(babysittingLabor);
+
+  const netBabyEl = document.getElementById('net-babysitting-net');
+  netBabyEl.textContent = fmt(babysittingNet);
+  netBabyEl.className = babysittingNet >= 0 ? 'positive' : 'negative';
+
+  const combEventEl = document.getElementById('combined-event');
+  combEventEl.textContent = fmt(eventNet);
+  combEventEl.style.color = eventNet >= 0 ? 'var(--green)' : 'var(--red)';
+
+  const combBabyEl = document.getElementById('combined-baby');
+  combBabyEl.textContent = fmt(babysittingNet);
+  combBabyEl.style.color = babysittingNet >= 0 ? 'var(--green)' : 'var(--red)';
+
+  const combTotalEl = document.getElementById('combined-total');
+  combTotalEl.textContent = fmt(combinedSurplus);
+  combTotalEl.className = 'combined-value ' + (combinedSurplus >= 0 ? 'positive' : 'negative');
+
+  const combFinalEl = document.getElementById('combined-final');
+  combFinalEl.textContent = fmt(afterPaying);
+
+  // Update flowchart
+  document.getElementById('flow-revenue').textContent = fmtPlain(totalRevenue);
+  document.getElementById('flow-expenses').textContent = fmtPlain(totalExpenses);
+  document.getElementById('flow-net').textContent = fmt(combinedSurplus);
+
+  const flowNetNode = document.getElementById('flow-net-node');
+  if (combinedSurplus >= 0) {
+    flowNetNode.className = 'flow-node net-positive';
+  } else {
+    flowNetNode.className = 'flow-node net-negative';
+  }
+
+  // Renumber all lists
+  document.querySelectorAll('.items-list').forEach(list => {
+    list.querySelectorAll('.line-item').forEach((item, idx) => {
+      item.querySelector('.line-item-number').textContent = (idx + 1) + '.';
+    });
+  });
+}
+
+// ── What-If Scenario ──
+function calcScenario() {
+  const amirChecked = document.getElementById('reimburse-amir').checked;
+  const mohsinChecked = document.getElementById('reimburse-mohsin').checked;
+
+  // Get current live values
+  const amirTotal = (calcSubtotal('hospitality') + calcSubtotal('catering') + calcSubtotal('cleaning'));
+  const mohsinAmount = 500; // Dr. Mohsin Khan's donation
+
+  // Get current combined surplus from recalcAll logic
+  const revTotals = {};
+  ['donations', 'foodsales', 'babysitting'].forEach(s => { revTotals[s] = calcSubtotal(s); });
+  const expTotals = {};
+  ['marketing', 'supplies', 'travel'].forEach(s => { expTotals[s] = calcSubtotal(s); });
+  const sahwahTotal = expTotals.marketing + expTotals.supplies + expTotals.travel;
+
+  let yusufTotal = 0, babysittingLabor = 0;
+  document.querySelectorAll('#list-labor .line-item').forEach(item => {
+    const amt = parseFloat(item.dataset.amount) || 0;
+    if (item.dataset.laborType === 'babysitting') babysittingLabor += amt;
+    else yusufTotal += amt;
+  });
+
+  const eventRevenue = revTotals.donations + revTotals.foodsales;
+  const eventExpenses = sahwahTotal + yusufTotal;
+  const eventNet = eventRevenue - eventExpenses;
+  const babysittingNet = revTotals.babysitting - babysittingLabor;
+  const combinedSurplus = eventNet + babysittingNet;
+
+  const breakdown = document.getElementById('scenario-breakdown');
+  const result = document.getElementById('scenario-result');
+  const amirRow = document.getElementById('scenario-amir-row');
+  const mohsinRow = document.getElementById('scenario-mohsin-row');
+
+  if (!amirChecked && !mohsinChecked) {
+    breakdown.classList.remove('active');
+    result.classList.remove('active', 'deficit', 'surplus');
+    return;
+  }
+
+  breakdown.classList.add('active');
+  result.classList.add('active');
+
+  // Update amounts
+  document.getElementById('scenario-amir-amount').textContent = '−' + fmtPlain(amirTotal);
+  document.getElementById('scenario-current').textContent = fmt(combinedSurplus);
+  document.getElementById('scenario-unpaid-deduct').textContent = '−' + fmtPlain(babysittingLabor);
+
+  let adjusted = combinedSurplus - babysittingLabor;
+
+  if (amirChecked) {
+    amirRow.style.display = 'flex';
+    document.getElementById('scenario-amir-deduct').textContent = '−' + fmtPlain(amirTotal);
+    adjusted -= amirTotal;
+  } else {
+    amirRow.style.display = 'none';
+  }
+
+  if (mohsinChecked) {
+    mohsinRow.style.display = 'flex';
+    document.getElementById('scenario-mohsin-deduct').textContent = '−' + fmtPlain(mohsinAmount);
+    adjusted -= mohsinAmount;
+  } else {
+    mohsinRow.style.display = 'none';
+  }
+
+  document.getElementById('scenario-adjusted-total').textContent = fmt(adjusted);
+  document.getElementById('scenario-adjusted-total').style.color = adjusted >= 0 ? 'var(--green)' : 'var(--red)';
+
+  document.getElementById('scenario-result-value').textContent = fmt(adjusted);
+  result.classList.remove('deficit', 'surplus');
+  result.classList.add(adjusted >= 0 ? 'surplus' : 'deficit');
+}
+
+// ── Remove Item ──
+function removeItem(btn) {
+  const item = btn.closest('.line-item');
+  item.style.animation = 'itemRemove 0.25s ease forwards';
+  setTimeout(() => {
+    item.remove();
+    recalcAll();
+  }, 250);
+}
+
+// ── Show/Hide Add Form ──
+function showAddForm(btn) {
+  const row = btn.closest('.add-item-row');
+  const form = row.querySelector('.add-form');
+  btn.classList.add('hidden');
+  form.classList.add('active');
+  form.querySelector('.input-name').focus();
+}
+
+function hideAddForm(btn) {
+  const row = btn.closest('.add-item-row');
+  const form = row.querySelector('.add-form');
+  const addBtn = row.querySelector('.add-item-btn');
+  form.classList.remove('active');
+  addBtn.classList.remove('hidden');
+  form.querySelector('.input-name').value = '';
+  form.querySelector('.input-amount').value = '';
+}
+
+// ── Add Item ──
+function addItem(btn, sectionId) {
+  const row = btn.closest('.add-item-row');
+  const form = row.querySelector('.add-form');
+  const name = form.querySelector('.input-name').value.trim();
+  const amount = parseFloat(form.querySelector('.input-amount').value) || 0;
+
+  if (!name) {
+    form.querySelector('.input-name').focus();
+    return;
+  }
+
+  const list = document.getElementById('list-' + sectionId);
+  const count = list.querySelectorAll('.line-item').length + 1;
+
+  const div = document.createElement('div');
+  div.className = 'line-item';
+  div.dataset.amount = amount;
+  div.style.animation = 'fadeInUp 0.3s ease both';
+
+  div.innerHTML = `
+    <span class="line-item-number">${count}.</span>
+    <span class="line-item-name">${escapeHtml(name)}</span>
+    <span class="line-item-amount">${fmtPlain(amount)}</span>
+    <button class="line-item-remove" onclick="removeItem(this)" title="Remove">&times;</button>
+  `;
+
+  list.appendChild(div);
+  hideAddForm(btn);
+  recalcAll();
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ── Action Items ──
+function removeAction(btn) {
+  const item = btn.closest('.action-item');
+  item.style.animation = 'itemRemove 0.25s ease forwards';
+  setTimeout(() => item.remove(), 250);
+}
+
+function showActionForm(btn) {
+  const row = btn.closest('.action-add-row');
+  const form = row.querySelector('.action-add-form');
+  btn.classList.add('hidden');
+  form.classList.add('active');
+  form.querySelector('.action-input').focus();
+}
+
+function hideActionForm(btn) {
+  const row = btn.closest('.action-add-row');
+  const form = row.querySelector('.action-add-form');
+  const addBtn = row.querySelector('.action-add-btn');
+  form.classList.remove('active');
+  addBtn.classList.remove('hidden');
+  form.querySelector('.action-input').value = '';
+}
+
+function addAction(btn) {
+  const row = btn.closest('.action-add-row');
+  const form = row.querySelector('.action-add-form');
+  const text = form.querySelector('.action-input').value.trim();
+  const priority = form.querySelector('.action-select').value;
+
+  if (!text) {
+    form.querySelector('.action-input').focus();
+    return;
+  }
+
+  const list = document.getElementById('action-list');
+  const div = document.createElement('div');
+  div.className = 'action-item';
+  div.style.animation = 'fadeInUp 0.3s ease both';
+  div.innerHTML = `
+    <span class="action-badge ${priority}">${priority === 'urgent' ? 'Urgent' : 'Pending'}</span>
+    <span class="action-text"><strong>${escapeHtml(text)}</strong></span>
+    <button class="action-remove" onclick="removeAction(this)" title="Remove">&times;</button>
+  `;
+  list.appendChild(div);
+  hideActionForm(btn);
+}
+
+// ── Enter key support on forms ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && e.target.classList.contains('input-amount')) {
+    const form = e.target.closest('.add-form');
+    const confirmBtn = form.querySelector('.btn-confirm');
+    confirmBtn.click();
+  }
+  if (e.key === 'Enter' && e.target.classList.contains('action-input')) {
+    const form = e.target.closest('.action-add-form');
+    const confirmBtn = form.querySelector('.btn-confirm');
+    confirmBtn.click();
+  }
+  if (e.key === 'Escape') {
+    const activeForm = document.querySelector('.add-form.active');
+    if (activeForm) {
+      const cancelBtn = activeForm.querySelector('.btn-cancel');
+      cancelBtn.click();
+    }
+  }
+});
+
+// Initial calculation check
+recalcAll();
+</script>
+</body>
+</html>
